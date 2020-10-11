@@ -7,6 +7,8 @@ import Select from '../../components/Select';
 
 import api from '../../services/api';
 
+import emojiImg from '../../assets/images/emoji.svg';
+
 import './styles.css';
 
 function TeacherList() {
@@ -32,7 +34,13 @@ function TeacherList() {
 
   return (
     <div id="page-teacher-list" className="container">
-      <PageHeader title="Estes são os proffys disponíveis.">
+      <PageHeader 
+        pageName="Estudar"
+        title="Estes são os proffys disponíveis."
+        emoji={emojiImg}
+        emojiAlt="Emoji"
+        message="Nós temos 32 professores."
+      >
         <form id="search-teachers" onSubmit={searchTeachers}>
         <Select 
             name="subject" 

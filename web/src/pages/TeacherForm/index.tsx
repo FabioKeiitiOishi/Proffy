@@ -6,6 +6,7 @@ import Input from '../../components/Input';
 import Textarea from '../../components/Textarea';
 import Select from '../../components/Select';
 
+import rocketImg from '../../assets/images/rocket.svg';
 import warningIcon from '../../assets/images/icons/warning.svg';
 
 import api from '../../services/api';
@@ -69,8 +70,12 @@ function TeacherForm() {
   return (
     <div id="page-teacher-form" className="container">
       <PageHeader 
+        pageName="Dar aula"
         title="Que incrível que você quer dar aulas." 
         description="O primeiro passo é preencher este formulário de inscrição."
+        emoji={rocketImg}
+        emojiAlt="Rocket"
+        message="Preparare-se! Vai ser o máximo."
       />
 
       <main>

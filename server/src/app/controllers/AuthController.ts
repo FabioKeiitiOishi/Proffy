@@ -6,7 +6,6 @@ import authConfig from '../config/auth.json';
 import db from '../../database/connections';
 import { hashPassword, verifyPassword } from '../../utils/treatPassword';
 import mailer from '../../modules/mailer';
-import auth from '../middlewares/auth';
 
 interface AuthUserItem {
   id: number,
@@ -24,7 +23,7 @@ const generateToken = (user_id: number) => {
 
 export default class AuthController {
   async register(request: Request, response: Response) {
-    const { email, password } = request.body;
+    const { firstName, lastName, email, password } = request.body;
 
     const auth_user = await db('auth_users')
         .where('auth_users.email', '=', email);
@@ -35,6 +34,7 @@ export default class AuthController {
 
     const trans = await db.transaction();
     try {
+      const completeName = firstName.trim() + ' ' + lastName.trim();
       const encryptedPassword = await hashPassword(password);
       
       const auth_user = await trans('auth_users').insert({
@@ -48,6 +48,7 @@ export default class AuthController {
 
       return response.status(201).send({
         authUserId,
+        name: completeName,
         token: generateToken(authUserId)
       });
       

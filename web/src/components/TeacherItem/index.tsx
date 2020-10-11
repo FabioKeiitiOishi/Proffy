@@ -1,4 +1,4 @@
-import React, { ReactType } from 'react';
+import React from 'react';
 
 import whatsappIcon from '../../assets/images/icons/whatsapp.svg';
 
@@ -45,6 +45,7 @@ const TeacherItem:React.FC<TeacherProps> = ({ teacher }) => {
         </p>
         <a 
           target="_blank"
+          rel="noopener noreferrer"
           onClick={createNewConnection} 
           href={`https://wa.me/${teacher.whatsapp}`}
         >

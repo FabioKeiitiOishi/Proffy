@@ -7,8 +7,12 @@ import backIcon from '../../assets/images/icons/back.svg';
 import './styles.css';
 
 interface PageHeaderProps {
+  pageName: string,
   title: string,
-  description?: string
+  description?: string,
+  emoji?: string,
+  emojiAlt?: string,
+  message?: string
 }
 
 const PageHeader: React.FC<PageHeaderProps> = (props) => {
@@ -18,15 +22,21 @@ const PageHeader: React.FC<PageHeaderProps> = (props) => {
         <Link to="/">
           <img src={backIcon} alt="voltar"/>
         </Link>
+        <span>{props.pageName}</span>
         <img src={logoImg} alt="Proffy"/>
       </div>
       
       <div className="header-content">
         <strong>{props.title}</strong>
         {props.description && <p>{props.description}</p>}
+        <div className="header-tip">
+          {props.emoji && <img src={props.emoji} alt={props.emojiAlt}/>}
+          {props.message && <span>{props.message}</span>}
+        </div>
 
         {props.children}
       </div>
+      
     </header>
   );
 }
